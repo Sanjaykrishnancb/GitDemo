@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Kendo_Grid";
+}
+
+<h2>Kendo_Grid</h2>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/styles/kendo.default.min.css" />
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="http://kendo.cdn.telerik.com/2014.1.318/js/kendo.all.min.js"></script>
+
+
+
+
+<div id="cars"></div>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        var cars1 = [{ year: "2012", name: "a1", model: "drgdf" },
+        { year: "2011", name: "a2", model: "drgdf" },
+        { year: "2012", name: "a3", model: "drgdf" },
+        { year: "2012", name: "a4", model: "drgdf" },
+        { year: "2012", name: "a5", model: "drgdf" },
+        { year: "2008", name: "a6", model: "drgdf" }];
+
+        var carsDataSource = new kendo.data.DataSource({ data: cars1, pageable: 5, sort: {field:"year",dir:"asc"} });
+        carsDataSource.read();
+
+        $("#cars").kendoGrid({
+            dataSource: carsDataSource,
+            columns: [{ field: "year", title: "Year" },
+            { field: "name", title: "Name" },
+            { field: "model", title: "Model" },
+            {command:["edit","destroy"]}],
+            scrollable: false,
+            pageable: true,
+            sortable: true,
+            groupable: true,
+            filterable: true,
+            editable:"inline"
+        });
+
+
+    });
+
+
+
+</script>
+
+
+
+

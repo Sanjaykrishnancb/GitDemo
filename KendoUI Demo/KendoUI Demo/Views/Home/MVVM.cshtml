@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "MVVM";
+}
+
+<h2>MVVM</h2>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/styles/kendo.default.min.css" />
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+
+<script src="http://kendo.cdn.telerik.com/2014.1.318/js/kendo.all.min.js"></script>
+
+
+
+<div id="container">
+
+    <input data-bind="value: make" data-value-update="keyup" class="k-textbox" />
+    <br />
+    <span data-bind="visible: messageIsVisible">
+
+        <label data-bind="text: make"></label>
+
+    </span><br />
+    <input type="button" value="Click" data-bind="click: showMessage" class="k-button" />
+
+
+</div>
+<input id="date1" type="text" />
+<script>
+    $(document).ready(function () {
+
+        $("#date1").kendoDatePicker();
+        var viewModal =  kendo.observable({
+
+            make: "Ferrari",
+            messageIsVisible: function () {
+                return this.get("make").length != 0;
+            },
+            showMessage: function ()
+            {
+                alert("zsdasd");
+                var make = this.get("make");
+                alert(make);
+            }
+        });
+        kendo.bind($("#container"), viewModal);
+
+
+
+    });
+
+
+
+
+</script>
